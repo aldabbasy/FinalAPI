@@ -1,5 +1,5 @@
 from datetime import datetime as dt
-from flask import current_app as app, jsonify
+from flask import current_app as app, jsonify, request
 from ..Models import User
 from .. import db
 import json
@@ -11,12 +11,12 @@ def user_records():
     print(users)
     return json.dumps(users, cls=AlchemyEncoder.AlchemyEncoder)
 
-@app.route("/create/<username>/<email>", methods=["POST"])
-def create(username,email):
-
+@app.route("/create", methods=["POST"])
+def create():
+    request_body = request.json
     new_user = User.User(
-        username=username,
-        email=email,
+        username=request_body["username"],
+        email=request_body["email"],
         createdAt=dt.now(),
     )
 
