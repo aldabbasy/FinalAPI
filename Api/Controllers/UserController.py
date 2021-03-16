@@ -8,8 +8,8 @@ from ..Utils import AlchemyEncoder
 @app.route("/getUsers", methods=["GET"])
 def user_records():
     users = User.User.query.all()
-    print(users)
-    return json.dumps(users, cls=AlchemyEncoder.AlchemyEncoder)
+    result = [i.serialize for i in users]
+    return jsonify(result)
 
 @app.route("/create", methods=["POST"])
 def create():
