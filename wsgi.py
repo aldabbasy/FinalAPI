@@ -1,5 +1,5 @@
 """App entry point."""
-from api import create_app
+from Api import create_app
 
 app = create_app()
 
