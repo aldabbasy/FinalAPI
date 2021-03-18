@@ -21,7 +21,7 @@ class User(db.Model):
             'username': self.username,
             'email': self.email,
             'password': self.password,
-            'createdAt': self.createdBy,
+            'createdBy': self.createdBy,
             'createdAt': dump_datetime(self.createdAt)
            # This is an example how to deal with Many2Many relations
        }
