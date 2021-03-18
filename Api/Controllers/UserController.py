@@ -1,5 +1,6 @@
 from datetime import datetime as dt
 from flask import current_app as app, jsonify, request
+from flask_jwt import jwt_required
 from ..Models import User
 from .. import db
 import json
@@ -12,6 +13,7 @@ def user_records():
     return jsonify(result)
 
 @app.route("/create", methods=["POST"])
+@jwt_required()
 def create():
     request_body = request.json
     new_user = User.User(

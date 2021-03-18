@@ -13,6 +13,7 @@ class Config:
     SECRET_KEY = environ.get("SECRET_KEY")
     FLASK_APP = environ.get("FLASK_APP")
     FLASK_ENV = environ.get("FLASK_ENV")
+    JWT_AUTH_HEADER_PREFIX = environ.get("JWT_AUTH_HEADER_PREFIX")
 
     # Database
     SQLALCHEMY_DATABASE_URI = environ.get("SQLALCHEMY_DATABASE_URI")

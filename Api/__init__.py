@@ -17,4 +17,5 @@ def create_app():
         #import auth config
         from .Utils.auth import authenticate, identity
         jwt = JWT(app, authenticate, identity)
+        
         return app
