@@ -1,5 +1,5 @@
 # FlaskAPI
-Basic Flask API structure template using SQLALchemy.
+Basic Flask API structure template using SQLALchemy with JWT Bearer Authorization
 
 ## To get started right away:
 * clone this project to your local machine
