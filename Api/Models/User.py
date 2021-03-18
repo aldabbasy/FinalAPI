@@ -10,17 +10,19 @@ class User(db.Model):
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
     email = db.Column(db.String(80), index=True, unique=True, nullable=False)
     password = db.Column(db.String(200), index=False, unique=False, nullable=False)
+    createdBy = db.Column(db.String(200), index=False, unique=False, nullable=False)
     createdAt = db.Column(db.DateTime, index=False, unique=False, nullable=False)
 
     @property
     def serialize(self):
        """Return object data in easily serializable format"""
        return {
-           'id': self.id,
-           'username': self.username,
+            'id': self.id,
+            'username': self.username,
             'email': self.email,
             'password': self.password,
-           'createdAt': dump_datetime(self.createdAt)
+            'createdAt': self.createdBy,
+            'createdAt': dump_datetime(self.createdAt)
            # This is an example how to deal with Many2Many relations
        }
 
