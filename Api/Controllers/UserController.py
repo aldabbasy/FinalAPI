@@ -1,11 +1,10 @@
+import json
+import hashlib
 from datetime import datetime as dt
 from flask import current_app as app, jsonify, request
 from flask_jwt import jwt_required, current_identity
 from ..Models import User
 from .. import db
-import json
-from ..Utils import AlchemyEncoder
-import hashlib
 
 @app.route("/getUsers", methods=["GET"])
 def user_records():
@@ -14,7 +13,7 @@ def user_records():
     return jsonify(result)
 
 @app.route("/create", methods=["POST"])
-@jwt_required
+@jwt_required()
 def create():
     request_body = request.json
     hashed_password = hashlib.md5(request_body["password"].encode('utf-8')).hexdigest()
