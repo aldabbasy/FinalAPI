@@ -15,16 +15,20 @@ class User(db.Model):
 
     @property
     def serialize(self):
-       """Return object data in easily serializable format"""
-       return {
+        """Return object data in easily serializable format"""
+        created_by = User.query.filter_by(id=int(self.createdBy)).first()
+        created_by_name = ''
+        if created_by:
+            created_by_name = created_by.username
+        return {
             'id': self.id,
             'username': self.username,
             'email': self.email,
             'password': self.password,
-            'createdBy': self.createdBy,
+            'createdBy': {'id': self.createdBy, 'username': created_by_name},
             'createdAt': dump_datetime(self.createdAt)
-           # This is an example how to deal with Many2Many relations
-       }
+            # This is an example how to deal with Many2Many relations
+        }
 
     def __repr__(self):
         return "<User {}>".format(self.username)
