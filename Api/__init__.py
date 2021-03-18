@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_jwt import JWT
 
 db = SQLAlchemy()
 
@@ -12,6 +13,8 @@ def create_app():
 
     with app.app_context():
         from . import Controllers  # Import routes
-
-        #db.create_all()  # Create database tables for our data models
+        db.create_all()  # Create database tables for our data models
+        #import auth config
+        from .Utils.auth import authenticate, identity
+        jwt = JWT(app, authenticate, identity)
         return app
