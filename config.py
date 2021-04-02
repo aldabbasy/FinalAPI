@@ -1,5 +1,5 @@
 from os import environ, path
-
+from datetime import timedelta
 from dotenv import load_dotenv
 
 basedir = path.abspath(path.dirname(__file__))
@@ -14,7 +14,7 @@ class Config:
     FLASK_APP = environ.get("FLASK_APP")
     FLASK_ENV = environ.get("FLASK_ENV")
     JWT_AUTH_HEADER_PREFIX = environ.get("JWT_AUTH_HEADER_PREFIX")
-
+    JWT_EXPIRATION_DELTA = timedelta(seconds=int(environ.get("JWT_EXPIRATION_DELTA")))
     # Database
     SQLALCHEMY_DATABASE_URI = environ.get("SQLALCHEMY_DATABASE_URI")
     SQLALCHEMY_ECHO = False
