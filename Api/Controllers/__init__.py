@@ -1,1 +1,1 @@
-from . import UserController
+from .UserController import bp as usersController

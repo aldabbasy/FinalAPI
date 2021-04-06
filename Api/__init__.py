@@ -11,7 +11,8 @@ def create_app():
     db.init_app(app)
 
     with app.app_context():
-        from . import Controllers  # Import routes
+        from .Controllers import usersController  # Import routes
+        app.register_blueprint(usersController, url_prefix='/api/users')
         db.create_all()  # Create database tables for our data models
         #import auth config
         from .Utils.auth import authenticate, identity
