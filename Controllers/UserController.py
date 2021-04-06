@@ -4,8 +4,8 @@ from flask import Blueprint
 from datetime import datetime as dt
 from flask import jsonify, request
 from flask_jwt import jwt_required, current_identity
-from ..Models import User
-from .. import db
+from Models import User
+from wsgi import db
 
 bp = Blueprint('users', __name__)
 

@@ -1,7 +1,7 @@
 from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.security import safe_str_cmp
 import hashlib
-from ..Models import User
+from Models import User
 
 users = User.User.query.all()
 
