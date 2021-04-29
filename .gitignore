@@ -1,6 +1,6 @@
 __pycache__
-Api\__pycache__
-Api\Controllers\__pycache__
-Api\Models\__pycache__
-Api\Utils\__pycache__
+Controllers\__pycache__
+Models\__pycache__
+Utils\__pycache__
 env
+.env
