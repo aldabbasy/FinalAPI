@@ -7,7 +7,7 @@ Basic Flask API structure template using SQLALchemy with JWT Bearer Authorizatio
 
 ## To get started right away:
 * clone this project to your local machine
-* add your config to `.env` file
+* rename `.env-dist` to `.env` and add your config.
 * create a virtualenv by running `python -m venv env`
 * activate the virtualenv by running `.\env\Scripts\activate`
 * install all project dependencies with `pip install -r requirements.txt`
