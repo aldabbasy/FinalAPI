@@ -4,7 +4,7 @@ from flask import Blueprint
 from datetime import datetime as dt
 from flask import jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
-from Models import User
+from Models.User import User
 from wsgi import db
 
 bp = Blueprint('users', __name__)
@@ -22,7 +22,7 @@ def login():
 
 @bp.route("/getUsers", methods=["GET"])
 def user_records():
-    users = User.User.query.all()
+    users = User.query.all()
     result = [i.serialize for i in users]
     return jsonify(result)
 
@@ -31,7 +31,7 @@ def user_records():
 def create():
     request_body = request.json
     hashed_password = hashlib.md5(request_body["password"].encode('utf-8')).hexdigest()
-    new_user = User.User(
+    new_user = User(
         username= request_body["username"],
         email= request_body["email"],
         password= hashed_password,
