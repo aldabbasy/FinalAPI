@@ -1,6 +1,6 @@
 import json
 import hashlib
-from flask import Blueprint
+from flask import Blueprint, current_app as app
 from datetime import datetime as dt
 from flask import jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
