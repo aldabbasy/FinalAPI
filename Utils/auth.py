@@ -1,4 +1,3 @@
-from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.security import safe_str_cmp
 import hashlib
 from Models import User
@@ -15,7 +14,3 @@ def authenticate(username, password):
     hashed_posted_password = hashlib.md5(password.encode('utf-8')).hexdigest()
     if user and safe_str_cmp(user_password, hashed_posted_password):
         return user
-
-def identity(payload):
-    user_id = payload['identity']
-    return userid_table.get(user_id, None).id

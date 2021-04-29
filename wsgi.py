@@ -1,7 +1,7 @@
 """App entry point."""
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_jwt import JWT
+from flask_jwt_extended import JWTManager
 
 db = SQLAlchemy()
 
@@ -14,9 +14,7 @@ def create_app():
     with app.app_context():
         import Controllers  # Import routes
         db.create_all()  # Create database tables for our data models
-        #import auth config
-        from Utils.auth import authenticate, identity
-        jwt = JWT(app, authenticate, identity)
+        JWTManager(app)
         
         return app
 

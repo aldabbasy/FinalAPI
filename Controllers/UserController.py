@@ -3,11 +3,22 @@ import hashlib
 from flask import Blueprint
 from datetime import datetime as dt
 from flask import jsonify, request
-from flask_jwt import jwt_required, current_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 from Models import User
 from wsgi import db
 
 bp = Blueprint('users', __name__)
+
+@app.route("/login", methods=["POST"])
+def login():
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+    user = User.query.filter_by(username=username).first()
+    if authenticate(username, password):
+        access_token = create_access_token(identity=user.id)
+        return jsonify(access_token=access_token)
+    
+    return jsonify({"msg": "Bad username or password"}), 401
 
 @bp.route("/getUsers", methods=["GET"])
 def user_records():
@@ -24,7 +35,7 @@ def create():
         username= request_body["username"],
         email= request_body["email"],
         password= hashed_password,
-        createdBy= '%s' % current_identity,
+        createdBy= get_jwt_identity(),
         createdAt= dt.now(),
     )
     db.session.add(new_user)
