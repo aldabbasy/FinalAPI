@@ -9,17 +9,6 @@ from wsgi import db
 
 bp = Blueprint('users', __name__)
 
-@app.route("/login", methods=["POST"])
-def login():
-    username = request.json.get("username", None)
-    password = request.json.get("password", None)
-    user = User.query.filter_by(username=username).first()
-    if authenticate(username, password):
-        access_token = create_access_token(identity=user.id)
-        return jsonify(access_token=access_token)
-    
-    return jsonify({"msg": "Bad username or password"}), 401
-
 @bp.route("/getUsers", methods=["GET"])
 def user_records():
     users = User.query.all()

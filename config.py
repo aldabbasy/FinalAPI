@@ -15,6 +15,7 @@ class Config:
     FLASK_ENV = environ.get("FLASK_ENV")
     JWT_AUTH_HEADER_PREFIX = environ.get("JWT_AUTH_HEADER_PREFIX")
     JWT_EXPIRATION_DELTA = timedelta(seconds=int(environ.get("JWT_EXPIRATION_DELTA")))
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=int(environ.get("JWT_REFRESH_TOKEN_EXPIRES")))
     # Database
     SQLALCHEMY_DATABASE_URI = environ.get("SQLALCHEMY_DATABASE_URI")
     SQLALCHEMY_ECHO = False
